@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.graphics.Color"/>
+        <variable
+            name="sharedViewModel"
+            type="com.example.flipsmart.SharedViewModel" />
+        <variable
+            name="createViewModel"
+            type="com.example.flipsmart.CreateViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".CreateFragment">
+
+        <com.example.flipsmart.PaintView
+            android:id="@+id/drawCanvas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@+id/review_mathview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{createViewModel.drawEnabled ? View.VISIBLE : View.INVISIBLE}"/>
+
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="322dp"
+            android:layout_height="76dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:singleLine="true"
+            android:text="@={createViewModel.currText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/review_mathview"
+            android:visibility="@{createViewModel.drawEnabled ? View.INVISIBLE : View.VISIBLE}"/>
+
+        <TextView
+            android:id="@+id/card_side"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@={createViewModel.side_text}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/flip_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:onClick="@{()->createViewModel.onFlipSubmit()}"
+            android:text="@={createViewModel.buttonText}"
+            app:layout_constraintStart_toEndOf="@+id/card_side"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Flip" />
+
+        <Button
+            android:id="@+id/end_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="@{view -> createViewModel.onEnd(view)}"
+            android:text="End Editing"
+            android:visibility="@{createViewModel.end_button_visibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/card_side"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.agog.mathdisplay.MTMathView
+            android:id="@+id/review_mathview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:visibility="@{createViewModel.latexEnabled ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flip_next_button" />
+
+        <ImageButton
+            android:id="@+id/textButton"
+            android:layout_width="45dp"
+            android:layout_height="48dp"
+            android:background='@{createViewModel.textEnabled ? Color.GRAY : Color.LTGRAY}'
+            android:scaleType="fitCenter"
+            android:onClick="@{() -> createViewModel.enableTextMode()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flip_next_button"
+            app:srcCompat="@drawable/text" />
+
+        <ImageButton
+            android:id="@+id/drawButton"
+            android:layout_width="49dp"
+            android:layout_height="48dp"
+            android:background='@{createViewModel.drawEnabled ? Color.GRAY : Color.LTGRAY}'
+            android:scaleType="fitCenter"
+            android:onClick="@{() -> createViewModel.enableDrawMode()}"
+            app:layout_constraintEnd_toStartOf="@+id/textButton"
+            app:layout_constraintTop_toBottomOf="@+id/flip_next_button"
+            app:srcCompat="@drawable/pencil" />
+
+        <ImageButton
+            android:id="@+id/latexButton"
+            android:layout_width="44dp"
+            android:layout_height="48dp"
+            android:background='@{createViewModel.latexEnabled ? Color.GRAY : Color.LTGRAY}'
+            android:scaleType="fitCenter"
+            android:onClick="@{() -> createViewModel.enableLatexMode()}"
+            app:layout_constraintEnd_toStartOf="@+id/drawButton"
+            app:layout_constraintTop_toBottomOf="@+id/flip_next_button"
+            app:srcCompat="@drawable/sigma" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

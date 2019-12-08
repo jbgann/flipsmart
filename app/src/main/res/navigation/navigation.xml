@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/masterFragment">
+
+    <fragment
+        android:id="@+id/masterFragment"
+        android:name="com.example.flipsmart.MasterFragment"
+        android:label="master_fragment"
+        tools:layout="@layout/master_fragment" >
+        <action
+            android:id="@+id/action_masterFragment_to_nameFragment"
+            app:destination="@id/nameFragment" />
+        <action
+            android:id="@+id/action_masterFragment_to_selectFragment"
+            app:destination="@id/selectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.example.flipsmart.NameFragment"
+        android:label="name_fragment"
+        tools:layout="@layout/name_fragment" >
+        <action
+            android:id="@+id/action_nameFragment_to_createFragment"
+            app:destination="@id/createFragment"
+            app:popUpTo="@+id/masterFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.example.flipsmart.CreateFragment"
+        android:label="create_fragment"
+        tools:layout="@layout/create_fragment" >
+        <action
+            android:id="@+id/action_createFragment_to_masterFragment"
+            app:destination="@id/masterFragment"
+            app:popUpTo="@+id/masterFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectFragment"
+        android:name="com.example.flipsmart.SelectFragment"
+        android:label="select_fragment"
+        tools:layout="@layout/select_fragment" >
+        <action
+            android:id="@+id/action_selectFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment"
+            app:popUpTo="@+id/masterFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.flipsmart.ReviewFragment"
+        android:label="review_fragment"
+        tools:layout="@layout/review_fragment" >
+        <action
+            android:id="@+id/action_reviewFragment_to_masterFragment"
+            app:destination="@id/masterFragment"
+            app:popUpTo="@+id/masterFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="sharedViewModel"
+            type="com.example.flipsmart.SharedViewModel" />
+        <variable
+            name="reviewViewModel"
+            type="com.example.flipsmart.ReviewViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ReviewFragment">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{reviewViewModel.side_is_front ? "Front" : "Back"}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="330dp"
+            android:layout_height="650dp"
+            android:gravity="center"
+            android:onClick="@{()->reviewViewModel.flip()}"
+            android:text="@={reviewViewModel.cardDisplay}"
+            android:visibility="@{reviewViewModel.textViewVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> reviewViewModel.on_flip_rate_button(2)}"
+            android:text="2"
+            android:visibility="@{reviewViewModel.side_is_front ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="39dp"
+            android:text='@{reviewViewModel.side_is_front ? "Flip" : "3"}'
+            android:onClick="@{() -> reviewViewModel.on_flip_rate_button(3)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> reviewViewModel.on_flip_rate_button(4)}"
+            android:text="4"
+            android:visibility="@{reviewViewModel.side_is_front ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> reviewViewModel.on_flip_rate_button(1)}"
+            android:text="1"
+            android:visibility="@{reviewViewModel.side_is_front ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="67dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> reviewViewModel.on_flip_rate_button(5)}"
+            android:text="5"
+            android:visibility="@{reviewViewModel.side_is_front ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/card_image" />
+
+        <ImageView
+            android:id="@+id/card_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{reviewViewModel.drawViewVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.agog.mathdisplay.MTMathView
+            android:id="@+id/mathview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:visibility="@{reviewViewModel.latexViewVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintEnd_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
