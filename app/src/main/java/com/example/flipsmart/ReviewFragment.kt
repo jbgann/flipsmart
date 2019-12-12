@@ -38,6 +38,7 @@ class ReviewFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ReviewViewModel::class.java)
         binding.reviewViewModel = viewModel
         binding.sharedViewModel = sharedViewModel
+        binding.mathview.fontSize=60.toFloat()
         binding.setLifecycleOwner(this)
         //There does not seem to be an XML attribute to set the LaTeX for MTMathView
         //so databinding can't be used.  Passing the mathview into the viewmodel

@@ -1,6 +1,8 @@
 package com.example.flipsmart
 
+import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.graphics.Bitmap
@@ -25,6 +27,11 @@ import kotlinx.coroutines.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import android.content.Context.INPUT_METHOD_SERVICE
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.view.inputmethod.InputMethodManager
+
 
 class CreateViewModel(
     val database: CardDatabaseDAO,
@@ -82,8 +89,10 @@ class CreateViewModel(
                 createFragment.binding.drawCanvas.init(canvasMetrics)
             }
             createFragment.binding.drawCanvas.requestFocus()
+            createFragment.hideKeyboard()
         }else{
             createFragment.binding.editText4.requestFocus()
+            createFragment.showKeyboard()
         }
     }
 

@@ -41,6 +41,11 @@ class NameFragment : Fragment() {
 
     }
 
+    override fun onResume(){
+        super.onResume()
+        sharedViewModel.currDeckName.value =""
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

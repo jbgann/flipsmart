@@ -43,6 +43,7 @@ class CreateFragment : Fragment() {
         binding.createViewModel = viewModel
         binding.sharedViewModel = sharedViewModel
         binding.setLifecycleOwner(this)
+        binding.reviewMathview.fontSize=48.toFloat()
         Log.e("JOHNDEBUG",sharedViewModel.currDeckName.value ?: "default")
         val metrics = DisplayMetrics()
         getActivity()!!.getWindowManager().getDefaultDisplay().getMetrics(metrics)
