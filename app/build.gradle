@@ -11,6 +11,7 @@ apply plugin: 'androidx.navigation.safeargs'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
     dataBinding {
         enabled true
     }
@@ -20,6 +21,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -55,5 +57,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation 'com.github.gregcockroft:AndroidMath:ALPHA'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+    // https://developers.google.com/gsuite/guides/android
+    // https://mvnrepository.com/artifact/com.google.api-client/google-api-client-android
+    implementation('com.google.api-client:google-api-client-android:1.28.0') {
+        exclude group: 'org.apache.httpcomponents'
+        exclude module: 'guava-jdk5'
+    }
+    // https://mvnrepository.com/artifact/com.google.apis/google-api-services-sheets
+    implementation('com.google.apis:google-api-services-sheets:v4-rev571-1.25.0') {
+        exclude group: 'org.apache.httpcomponents'
+        exclude module: 'guava-jdk5'
+    }
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

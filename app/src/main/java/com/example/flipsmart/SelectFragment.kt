@@ -42,6 +42,8 @@ class SelectFragment : Fragment() {
         viewModel.decks.observe(viewLifecycleOwner, Observer {it?.let {adapter.submitList(it)}})
         binding = DataBindingUtil.inflate<SelectFragmentBinding>(inflater,R.layout.select_fragment,container,false)
         sharedViewModel.referenceView = binding.textView6
+        sharedViewModel.selectFragment = this
+        sharedViewModel.database = dataSource
 
 
         binding.selectViewModel = viewModel

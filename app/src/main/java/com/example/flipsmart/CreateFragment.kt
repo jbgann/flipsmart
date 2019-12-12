@@ -26,13 +26,13 @@ class CreateFragment : Fragment() {
 
     private lateinit var sharedViewModel : SharedViewModel
 
-    private lateinit var binding: CreateFragmentBinding
+    lateinit var binding: CreateFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<CreateFragmentBinding>(inflater,R.layout.create_fragment,container,false)
+        binding = DataBindingUtil.inflate<CreateFragmentBinding>(inflater,R.layout.create_fragment,container,false)
         val application = requireNotNull(this.activity).application
         val dataSource = CardDatabase.getInstance(application).cardDatabaseDao
         sharedViewModel = activity?.run {
@@ -40,7 +40,6 @@ class CreateFragment : Fragment() {
         } ?: throw Exception("Invalid Activity")
         val viewModelFactory = CreateViewModelFactory(dataSource,application,sharedViewModel.currDeckName.value ?: "default", this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CreateViewModel::class.java)
-        viewModel.createFragment = this
         binding.createViewModel = viewModel
         binding.sharedViewModel = sharedViewModel
         binding.setLifecycleOwner(this)

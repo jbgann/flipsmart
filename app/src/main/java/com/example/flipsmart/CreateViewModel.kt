@@ -19,6 +19,7 @@ import com.agog.mathdisplay.parse.MTParseError
 import com.agog.mathdisplay.parse.MTParseErrors
 import com.example.flipsmart.database.CardDatabaseDAO
 import com.example.flipsmart.database.Flashcard
+import com.example.flipsmart.databinding.CreateFragmentBinding
 import kotlinx.android.synthetic.main.create_fragment.*
 import kotlinx.coroutines.*
 import java.io.File
@@ -63,8 +64,8 @@ class CreateViewModel(
     }
 
     fun updateLatex(typed_text:String){
-        createFragment.review_mathview.lastError.clear()
-        createFragment.review_mathview.latex=typed_text
+        createFragment.binding.reviewMathview.lastError.clear()
+        createFragment.binding.reviewMathview.latex=typed_text
 
     }
 
@@ -78,11 +79,11 @@ class CreateViewModel(
         //Maybe move this to one of the lifecycle callbacks?
         if (drawEnabled.value!!){
             if (!canvasInitialized) {
-                createFragment.drawCanvas.init(canvasMetrics)
+                createFragment.binding.drawCanvas.init(canvasMetrics)
             }
-            createFragment.drawCanvas.requestFocus()
+            createFragment.binding.drawCanvas.requestFocus()
         }else{
-            createFragment.editText4.requestFocus()
+            createFragment.binding.editText4.requestFocus()
         }
     }
 

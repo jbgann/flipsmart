@@ -19,14 +19,20 @@ class MasterFragment : Fragment() {
 
     private lateinit var viewModel: MasterViewModel
 
+    private lateinit var sharedViewModel : SharedViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedViewModel = activity?.run {
+            ViewModelProviders.of(this).get(SharedViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
         viewModel = ViewModelProviders.of(this).get(MasterViewModel::class.java)
+        viewModel.sharedViewModel = sharedViewModel
         val binding = DataBindingUtil.inflate<MasterFragmentBinding>(inflater,R.layout.master_fragment,container,false)
         binding.masterViewModel = viewModel
-        binding.mathview1.latex="\\frac{1}{2}"
+        val mainActivity : MainActivity = activity as MainActivity
         return binding.root
     }
 

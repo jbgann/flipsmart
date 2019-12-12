@@ -49,6 +49,10 @@
             app:destination="@id/reviewFragment"
             app:popUpTo="@+id/masterFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_selectFragment_to_masterFragment"
+            app:destination="@id/masterFragment"
+            app:popUpTo="@+id/masterFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
